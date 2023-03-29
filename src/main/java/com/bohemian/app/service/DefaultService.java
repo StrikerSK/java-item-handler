@@ -40,6 +40,11 @@ public class DefaultService implements IItemService {
         return repository.findAll();
     }
 
+    @Override
+    public void deleteItem(Long id) {
+        repository.deleteById(id);
+    }
+
     @Scheduled(fixedDelay = 60000)
     public void deleteExpiredItems() {
         repository.deleteExpiredItems();

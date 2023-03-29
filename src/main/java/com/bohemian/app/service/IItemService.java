@@ -10,5 +10,6 @@ public interface IItemService {
     void updateItem(Long itemID, ItemDAO item);
     ItemDAO getItem(Long id);
     List<ItemDAO> getItems();
+    void deleteItem(Long id);
 
 }

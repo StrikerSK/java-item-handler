@@ -14,9 +14,7 @@ public class DummyItemService implements IItemService {
     }
 
     @Override
-    public void updateItem(Long itemID, ItemDAO item) {
-
-    }
+    public void updateItem(Long itemID, ItemDAO item) {}
 
     @Override
     public ItemDAO getItem(Long id) {
@@ -29,4 +27,8 @@ public class DummyItemService implements IItemService {
     public List<ItemDAO> getItems() {
         return null;
     }
+
+    @Override
+    public void deleteItem(Long id) {}
+
 }
