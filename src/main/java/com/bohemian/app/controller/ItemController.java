@@ -22,4 +22,9 @@ public class ItemController {
         return service.createItem(item);
     }
 
+    @PutMapping("/{id}")
+    public void updateItem(@PathVariable Long id, @RequestBody ItemDAO item) {
+        service.updateItem(id, item);
+    }
+
 }
