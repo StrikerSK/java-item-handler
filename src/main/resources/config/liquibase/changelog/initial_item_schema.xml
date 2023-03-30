@@ -2,7 +2,7 @@
     <property name="now" value="now()" dbms="h2"/>
     <changeSet id="2023033041524-1" author="kh">
         <createTable tableName="items">
-            <column name="id" type="bigint">
+            <column name="id" type="bigint" autoIncrement="true">
                 <constraints primaryKey="true" nullable="false" />
             </column>
             <column name="value" type="varchar(255)">
