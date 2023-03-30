@@ -3,10 +3,12 @@ package com.bohemian.app.service;
 import com.bohemian.app.NotFoundException;
 import com.bohemian.app.entity.ItemDAO;
 import com.bohemian.app.repository.ItemRepository;
-import jakarta.transaction.Transactional;
+import jakarta.persistence.LockModeType;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.Lock;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -17,31 +19,35 @@ public class DefaultService implements IItemService {
     private ItemRepository repository;
 
     @Override
+    @Transactional
     public Long createItem(ItemDAO item) {
         return repository.save(item).getId();
     }
 
     @Override
-    public void updateItem(Long itemID, ItemDAO item) {
-        if (repository.findById(itemID).isPresent()) {
-            item.setId(itemID);
-            repository.save(item);
-        } else {
-            throw new NotFoundException(String.format("Item [%s] not found!", itemID));
-        }
+    @Transactional
+    public void updateItem(Long itemID, ItemDAO updatedItem) {
+        ItemDAO item = repository.findById(itemID).orElseThrow(() -> new NotFoundException(String.format("Item [%s] not found!", itemID)));
+        item.setValue(updatedItem.getValue());
+        repository.save(item);
     }
 
     @Override
+    @Lock(LockModeType.OPTIMISTIC_FORCE_INCREMENT)
+    @Transactional(readOnly = true)
     public ItemDAO getItem(Long itemID) {
         return repository.findById(itemID).orElseThrow(() -> new NotFoundException(String.format("Item [%s] not found!", itemID)));
     }
 
     @Override
+    @Lock(LockModeType.OPTIMISTIC_FORCE_INCREMENT)
+    @Transactional(readOnly = true)
     public List<ItemDAO> getItems() {
         return repository.findAll();
     }
 
     @Override
+    @Transactional
     public void deleteItem(Long id) {
         repository.deleteById(id);
     }
