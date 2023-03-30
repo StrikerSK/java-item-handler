@@ -3,6 +3,7 @@ package com.bohemian.app.service;
 import com.bohemian.app.NotFoundException;
 import com.bohemian.app.entity.ItemDAO;
 import com.bohemian.app.repository.ItemRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
@@ -46,6 +47,7 @@ public class DefaultService implements IItemService {
     }
 
     @Scheduled(fixedDelay = 60000)
+    @Transactional
     public void deleteExpiredItems() {
         repository.deleteExpiredItems();
     }
