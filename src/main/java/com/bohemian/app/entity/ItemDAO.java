@@ -15,8 +15,8 @@ import java.util.Date;
 public class ItemDAO {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @SequenceGenerator(name = "item_generator", sequenceName = "item_seq")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "items_generator")
+    @SequenceGenerator(name = "items_generator", sequenceName = "item_seq", allocationSize = 1)
     @JsonIgnore
     private Long id;
 
