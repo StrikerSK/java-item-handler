@@ -11,6 +11,7 @@ import java.util.Date;
 @Entity
 @Getter
 @Setter
+@Table(name = "items")
 public class ItemDAO {
 
     @Id
