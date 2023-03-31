@@ -5,6 +5,8 @@ import com.bohemian.app.service.IItemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/item")
 public class ItemController {
@@ -15,6 +17,11 @@ public class ItemController {
     @GetMapping("/{id}")
     public ItemDAO getItem(@PathVariable Long id) {
         return service.getItem(id);
+    }
+
+    @GetMapping("")
+    public List<ItemDAO> findItems() {
+        return service.getItems();
     }
 
     @PostMapping

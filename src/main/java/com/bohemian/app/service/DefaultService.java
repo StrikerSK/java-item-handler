@@ -43,7 +43,7 @@ public class DefaultService implements IItemService {
     @Lock(LockModeType.OPTIMISTIC_FORCE_INCREMENT)
     @Transactional(readOnly = true)
     public List<ItemDAO> getItems() {
-        return repository.findAll();
+        return repository.findAllItems("code");
     }
 
     @Override
