@@ -1,6 +1,7 @@
 package com.bohemian.app.service;
 
 import com.bohemian.app.entity.ItemDAO;
+import org.springframework.data.domain.Pageable;
 
 import java.util.List;
 
@@ -23,7 +24,7 @@ public class DummyItemService implements IItemService {
     }
 
     @Override
-    public List<ItemDAO> getItems(Integer limit, List<String> tags) {
+    public List<ItemDAO> findItems(Pageable pageable, List<String> tags) {
         return null;
     }
 

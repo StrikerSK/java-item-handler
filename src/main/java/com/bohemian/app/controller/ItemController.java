@@ -3,6 +3,8 @@ package com.bohemian.app.controller;
 import com.bohemian.app.entity.ItemDAO;
 import com.bohemian.app.service.IItemService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -20,8 +22,13 @@ public class ItemController {
     }
 
     @GetMapping("")
-    public List<ItemDAO> findItems(@RequestParam(defaultValue = "5") Integer limit, @RequestParam List<String> tags) {
-        return service.getItems(limit, tags);
+    public List<ItemDAO> findItems(
+            @RequestParam(defaultValue = "0") Integer page,
+            @RequestParam(defaultValue = "5") Integer limit,
+            @RequestParam(required = false) List<String> tags
+    ) {
+        Pageable pageable = PageRequest.of(page, limit);
+        return service.findItems(pageable, tags);
     }
 
     @PostMapping
