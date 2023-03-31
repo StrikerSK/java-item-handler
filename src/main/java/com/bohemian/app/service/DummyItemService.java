@@ -23,7 +23,7 @@ public class DummyItemService implements IItemService {
     }
 
     @Override
-    public List<ItemDAO> getItems() {
+    public List<ItemDAO> getItems(Integer limit, List<String> tags) {
         return null;
     }
 

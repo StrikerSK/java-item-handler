@@ -20,8 +20,8 @@ public class ItemController {
     }
 
     @GetMapping("")
-    public List<ItemDAO> findItems() {
-        return service.getItems();
+    public List<ItemDAO> findItems(@RequestParam(defaultValue = "5") Integer limit, @RequestParam List<String> tags) {
+        return service.getItems(limit, tags);
     }
 
     @PostMapping

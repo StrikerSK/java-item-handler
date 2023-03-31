@@ -5,6 +5,8 @@ import com.bohemian.app.entity.ItemDAO;
 import com.bohemian.app.repository.ItemRepository;
 import jakarta.persistence.LockModeType;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.Lock;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
@@ -42,8 +44,9 @@ public class DefaultService implements IItemService {
     @Override
     @Lock(LockModeType.OPTIMISTIC_FORCE_INCREMENT)
     @Transactional(readOnly = true)
-    public List<ItemDAO> getItems() {
-        return repository.findAllItems("code");
+    public List<ItemDAO> getItems(Integer limit, List<String> tags) {
+        Pageable pageable = PageRequest.of(0, limit);
+        return repository.findAllItems(tags, pageable);
     }
 
     @Override
