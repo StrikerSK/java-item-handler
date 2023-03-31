@@ -25,7 +25,7 @@ public class ItemServiceTest {
     @Test
     public void testCreateItem() {
         ItemDAO item = new ItemDAO();
-        item.setValue("Hello world!");
+        item.setUserValue("Hello world!");
         Long itemId = 12345L;
         when(itemService.createItem(item)).thenReturn(itemId);
         Long createdItemId = itemService.createItem(item);

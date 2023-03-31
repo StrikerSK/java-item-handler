@@ -28,7 +28,7 @@ public class DefaultService implements IItemService {
     @Transactional
     public void updateItem(Long itemID, ItemDAO updatedItem) {
         ItemDAO item = repository.findById(itemID).orElseThrow(() -> new NotFoundException(String.format("Item [%s] not found!", itemID)));
-        item.setValue(updatedItem.getValue());
+        item.setUserValue(updatedItem.getUserValue());
         repository.save(item);
     }
 

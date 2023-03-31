@@ -1,7 +1,6 @@
 package com.bohemian.app.service;
 
 import com.bohemian.app.entity.ItemDAO;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
 
@@ -19,7 +18,7 @@ public class DummyItemService implements IItemService {
     @Override
     public ItemDAO getItem(Long id) {
         ItemDAO item = new ItemDAO();
-        item.setValue("Item name");
+        item.setUserValue("Item name");
         return item;
     }
 

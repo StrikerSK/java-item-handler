@@ -20,7 +20,8 @@ public class ItemDAO {
     @JsonIgnore
     private Long id;
 
-    private String value;
+    @Column(name = "userValue")
+    private String userValue;
 
     @Temporal(TemporalType.TIMESTAMP)
     @Column(nullable = false, updatable = false)

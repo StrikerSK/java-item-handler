@@ -3,9 +3,9 @@
     <changeSet id="2023033041524-1" author="kh">
         <createTable tableName="items">
             <column name="id" type="bigint" autoIncrement="true">
-                <constraints primaryKey="true" nullable="false" />
+                <constraints primaryKey="true" nullable="true" />
             </column>
-            <column name="value" type="varchar(255)">
+            <column name="user_value" type="varchar" >
                 <constraints nullable="true" />
             </column>
             <column name="create_at" type="timestamp">
@@ -18,6 +18,6 @@
                 <constraints nullable="true" />
             </column>
         </createTable>
-        <createSequence schemaName="public" startValue="1" incrementBy="1" ordered="true" sequenceName="item_seq"/>
+        <createSequence schemaName="public" startValue="1" incrementBy="1" ordered="true" sequenceName="item_seq" />
     </changeSet>
 </databaseChangeLog>
