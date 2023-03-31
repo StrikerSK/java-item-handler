@@ -19,7 +19,7 @@ public class DummyItemService implements IItemService {
     @Override
     public ItemDAO getItem(Long id) {
         ItemDAO item = new ItemDAO();
-        item.setUserValue("Item name");
+        item.setUserValue(123456789);
         return item;
     }
 

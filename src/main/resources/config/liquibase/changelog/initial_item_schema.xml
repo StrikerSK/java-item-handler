@@ -12,7 +12,7 @@
             <column name="id" type="bigint" autoIncrement="true">
                 <constraints primaryKey="true" nullable="true" />
             </column>
-            <column name="item_value" type="varchar" >
+            <column name="item_value" type="integer" >
                 <constraints nullable="true" />
             </column>
             <column name="create_at" type="timestamp">

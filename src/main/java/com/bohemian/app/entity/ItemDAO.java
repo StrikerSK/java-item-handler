@@ -25,7 +25,7 @@ public class ItemDAO {
 
     @Column(name = "item_value")
     @JsonProperty("value")
-    private String userValue;
+    private Integer userValue;
 
     @Temporal(TemporalType.TIMESTAMP)
     @Column(nullable = false, updatable = false)
