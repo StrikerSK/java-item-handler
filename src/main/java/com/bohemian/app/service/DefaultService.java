@@ -1,6 +1,6 @@
 package com.bohemian.app.service;
 
-import com.bohemian.app.NotFoundException;
+import com.bohemian.app.exceptions.NotFoundException;
 import com.bohemian.app.entity.ItemDAO;
 import com.bohemian.app.repository.ItemRepository;
 import jakarta.persistence.LockModeType;
