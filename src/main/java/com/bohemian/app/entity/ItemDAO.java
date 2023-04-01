@@ -5,6 +5,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 import org.springframework.data.annotation.Version;
 
 import java.util.ArrayList;
@@ -38,7 +40,8 @@ public class ItemDAO {
     @JsonIgnore
     private Date modifiedAt;
 
-    @ElementCollection
+    @ElementCollection(fetch = FetchType.EAGER)
+    @Fetch(FetchMode.SUBSELECT)
     @CollectionTable(name = "item_tags", joinColumns = @JoinColumn(name = "item_id"))
     @Column(name = "tag")
     private List<String> tags = new ArrayList<>();
