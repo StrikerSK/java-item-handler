@@ -10,6 +10,7 @@ import org.springframework.data.annotation.Version;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 
 @Entity
 @Getter
@@ -56,4 +57,16 @@ public class ItemDAO {
         this.modifiedAt = new Date();
     }
 
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof ItemDAO item)) return false;
+        return Objects.equals(this.id, item.id);
+    }
 }
