@@ -4,8 +4,6 @@ import com.bohemian.app.entity.ItemDAO;
 import com.bohemian.app.entity.SearchParameters;
 import com.bohemian.app.service.IItemService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
