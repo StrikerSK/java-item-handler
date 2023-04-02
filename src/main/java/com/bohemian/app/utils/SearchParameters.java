@@ -1,8 +1,7 @@
-package com.bohemian.app.entity;
+package com.bohemian.app.utils;
 
 import lombok.Getter;
 import lombok.Setter;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 
 import java.util.ArrayList;
@@ -15,14 +14,14 @@ public class SearchParameters {
 
     private Integer lowerBound;
     private Integer upperBound;
-    private Integer page;
+    private Integer offset;
     private Integer limit;
     private List<String> tags;
 
-    public SearchParameters(Integer lowerBound, Integer upperBound, Integer limit, Integer page, List<String> tags) {
+    public SearchParameters(Integer lowerBound, Integer upperBound, Integer limit, Integer offset, List<String> tags) {
         setLowerBound(lowerBound);
         setUpperBound(upperBound);
-        setPage(page);
+        setOffset(offset);
         setLimit(limit);
         setTags(tags);
     }
@@ -40,7 +39,7 @@ public class SearchParameters {
     }
 
     public Pageable getPageable() {
-        return PageRequest.of(getPage(), getLimit());
+        return new OffsetBasedPageRequest(offset, limit);
     }
 
 }

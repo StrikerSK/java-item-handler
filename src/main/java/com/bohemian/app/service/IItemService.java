@@ -1,7 +1,7 @@
 package com.bohemian.app.service;
 
 import com.bohemian.app.entity.ItemDAO;
-import com.bohemian.app.entity.SearchParameters;
+import com.bohemian.app.utils.SearchParameters;
 
 import java.util.List;
 

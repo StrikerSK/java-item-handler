@@ -1,6 +1,6 @@
 package com.bohemian.app.service;
 
-import com.bohemian.app.entity.SearchParameters;
+import com.bohemian.app.utils.SearchParameters;
 import com.bohemian.app.exceptions.NotFoundException;
 import com.bohemian.app.entity.ItemDAO;
 import com.bohemian.app.repository.ItemRepository;

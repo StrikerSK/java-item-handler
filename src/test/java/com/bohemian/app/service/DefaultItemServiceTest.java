@@ -2,7 +2,7 @@ package com.bohemian.app.service;
 
 import com.bohemian.app.BohemianAppApplicationTests;
 import com.bohemian.app.entity.ItemDAO;
-import com.bohemian.app.entity.SearchParameters;
+import com.bohemian.app.utils.SearchParameters;
 import com.bohemian.app.exceptions.NotFoundException;
 import org.junit.Assert;
 import org.junit.Before;
@@ -46,13 +46,32 @@ public class DefaultItemServiceTest extends BohemianAppApplicationTests {
     }
 
     @Test
-    public void invalidListItems() {
+    public void listItemsWithOffset() {
+        SearchParameters parameters = new SearchParameters(Integer.MIN_VALUE, Integer.MAX_VALUE, 999, 3, List.of());
+        List<ItemDAO> items = itemService.findItems(parameters);
+        Assert.assertEquals(7, items.size());
+        Assert.assertEquals(itemsIDs.get(3).longValue(), items.get(0).getId().longValue());
+    }
+
+    @Test
+    public void invalidLimitInListItems() {
         SearchParameters parameters = new SearchParameters(Integer.MIN_VALUE, Integer.MAX_VALUE, -5, 0, List.of());
         try {
             itemService.findItems(parameters);
         } catch (Exception e){
             Assert.assertTrue(e instanceof IllegalArgumentException);
-            Assert.assertEquals("Page size must not be less than one", e.getMessage());
+            Assert.assertEquals("Limit must not be less than one!", e.getMessage());
+        }
+    }
+
+    @Test
+    public void invalidOffsetInListItems() {
+        SearchParameters parameters = new SearchParameters(Integer.MIN_VALUE, Integer.MAX_VALUE, 5, -5, List.of());
+        try {
+            itemService.findItems(parameters);
+        } catch (Exception e){
+            Assert.assertTrue(e instanceof IllegalArgumentException);
+            Assert.assertEquals("Offset index must not be less than zero!", e.getMessage());
         }
     }
 

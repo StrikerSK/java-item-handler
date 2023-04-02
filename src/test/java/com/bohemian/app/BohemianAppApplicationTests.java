@@ -1,7 +1,7 @@
 package com.bohemian.app;
 
 import com.bohemian.app.entity.ItemDAO;
-import com.bohemian.app.entity.SearchParameters;
+import com.bohemian.app.utils.SearchParameters;
 import com.bohemian.app.service.IItemService;
 import org.junit.Assert;
 import org.junit.Test;
