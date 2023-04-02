@@ -1,0 +1,49 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd
+         http://www.liquibase.org/xml/ns/dbchangelog-ext
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+    <property name="now" value="now()" dbms="h2"/>
+    <changeSet id="2023033041524-1" author="kh">
+        <createTable tableName="items">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" nullable="true" />
+            </column>
+            <column name="item_value" type="integer" >
+                <constraints nullable="true" />
+            </column>
+            <column name="create_at" type="timestamp">
+                <constraints nullable="true" />
+            </column>
+            <column name="modified_at" type="timestamp">
+                <constraints nullable="true" />
+            </column>
+            <column name="version" type="bigint">
+                <constraints nullable="true" />
+            </column>
+        </createTable>
+
+        <createTable tableName="item_tags">
+            <column name="item_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="tag" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <addForeignKeyConstraint baseTableSchemaName=""
+                                 baseTableName="item_tags"
+                                 baseColumnNames="item_id"
+                                 referencedTableSchemaName=""
+                                 referencedTableName="items"
+                                 referencedColumnNames="id"
+                                 constraintName="fk_item_tags_items"/>
+
+        <createSequence schemaName="public" startValue="1" incrementBy="1" sequenceName="item_seq" />
+        <addPrimaryKey tableName="item_tags" columnNames="item_id,tag"/>
+    </changeSet>
+</databaseChangeLog>
