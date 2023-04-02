@@ -61,7 +61,7 @@ public class DefaultItemService implements IItemService {
         repository.deleteById(id);
     }
 
-    @Scheduled(fixedDelay = 60000)
+    @Scheduled(fixedDelayString = "${bohemian.deletion.delay:60000}")
     @Transactional
     public void deleteExpiredItems() {
         repository.deleteExpiredItems();
