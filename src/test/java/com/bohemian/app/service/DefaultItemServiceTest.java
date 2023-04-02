@@ -2,11 +2,11 @@ package com.bohemian.app.service;
 
 import com.bohemian.app.BohemianAppApplicationTests;
 import com.bohemian.app.entity.ItemDAO;
+import com.bohemian.app.entity.SearchParameters;
 import com.bohemian.app.exceptions.NotFoundException;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import org.springframework.data.domain.PageRequest;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,8 +28,32 @@ public class DefaultItemServiceTest extends BohemianAppApplicationTests {
 
     @Test
     public void listItems() {
-        List<ItemDAO> items = itemService.findItems(PageRequest.of(0, 5), List.of());
+        SearchParameters parameters = new SearchParameters(Integer.MIN_VALUE, Integer.MAX_VALUE, 5, 0, List.of());
+        List<ItemDAO> items = itemService.findItems(parameters);
         Assert.assertEquals(5, items.size());
+
+        parameters.setLimit(999);
+        items = itemService.findItems(parameters);
+        Assert.assertEquals(10, items.size());
+
+        parameters.setUpperBound(8);
+        items = itemService.findItems(parameters);
+        Assert.assertEquals(8, items.size());
+
+        parameters.setLowerBound(4);
+        items = itemService.findItems(parameters);
+        Assert.assertEquals(5, items.size());
+    }
+
+    @Test
+    public void invalidListItems() {
+        SearchParameters parameters = new SearchParameters(Integer.MIN_VALUE, Integer.MAX_VALUE, -5, 0, List.of());
+        try {
+            itemService.findItems(parameters);
+        } catch (Exception e){
+            Assert.assertTrue(e instanceof IllegalArgumentException);
+            Assert.assertEquals("Page size must not be less than one", e.getMessage());
+        }
     }
 
     @Test
@@ -66,6 +90,7 @@ public class DefaultItemServiceTest extends BohemianAppApplicationTests {
         Assert.assertEquals(newValue, persistedItem.getUserValue());
         Assert.assertEquals(2, persistedItem.getTags().size());
         Assert.assertEquals(id, persistedItem.getId());
+        Assert.assertNotEquals(persistedItem.getCreateAt(), persistedItem.getModifiedAt());
     }
 
     @Test

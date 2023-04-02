@@ -1,11 +1,11 @@
 package com.bohemian.app.service;
 
+import com.bohemian.app.entity.SearchParameters;
 import com.bohemian.app.exceptions.NotFoundException;
 import com.bohemian.app.entity.ItemDAO;
 import com.bohemian.app.repository.ItemRepository;
 import jakarta.persistence.LockModeType;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.Lock;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
@@ -46,11 +46,12 @@ public class DefaultItemService implements IItemService {
     @Override
     @Lock(LockModeType.OPTIMISTIC_FORCE_INCREMENT)
     @Transactional(readOnly = true)
-    public List<ItemDAO> findItems(Pageable pageable, List<String> tags) {
+    public List<ItemDAO> findItems(SearchParameters parameters) {
+        List<String> tags = parameters.getTags();
         if (tags == null || tags.isEmpty()) {
-            return getItems(pageable);
+            return repository.findItemsWithWithoutTags(parameters.getLowerBound(), parameters.getUpperBound(), parameters.getPageable());
         } else {
-            return getItems(pageable, tags);
+            return repository.findItemsWithAllFilters(parameters.getTags(), parameters.getLowerBound(), parameters.getUpperBound(), parameters.getPageable());
         }
     }
 
@@ -64,14 +65,6 @@ public class DefaultItemService implements IItemService {
     @Transactional
     public void deleteExpiredItems() {
         repository.deleteExpiredItems();
-    }
-
-    private List<ItemDAO> getItems(Pageable pageable) {
-        return repository.findAll(pageable).toList();
-    }
-
-    private List<ItemDAO> getItems(Pageable pageable, List<String> tags) {
-        return repository.findAllItems(tags, pageable);
     }
 
 }

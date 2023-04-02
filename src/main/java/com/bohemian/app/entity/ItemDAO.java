@@ -23,7 +23,6 @@ public class ItemDAO {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "item_seq")
     @SequenceGenerator(name = "item_seq", sequenceName = "item_seq", allocationSize = 1)
-    @JsonIgnore
     private Long id;
 
     @Column(name = "item_value")
@@ -32,12 +31,10 @@ public class ItemDAO {
 
     @Temporal(TemporalType.TIMESTAMP)
     @Column(nullable = false, updatable = false)
-    @JsonIgnore
     private Date createAt;
 
     @Temporal(TemporalType.TIMESTAMP)
     @Column(nullable = false)
-    @JsonIgnore
     private Date modifiedAt;
 
     @ElementCollection(fetch = FetchType.EAGER)

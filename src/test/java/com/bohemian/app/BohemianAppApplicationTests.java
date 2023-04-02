@@ -1,13 +1,13 @@
 package com.bohemian.app;
 
 import com.bohemian.app.entity.ItemDAO;
+import com.bohemian.app.entity.SearchParameters;
 import com.bohemian.app.service.IItemService;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.junit4.SpringRunner;
 
@@ -25,6 +25,8 @@ public class BohemianAppApplicationTests {
 
     @Test
     public void testConcurrentAccess() throws InterruptedException, ExecutionException {
+        SearchParameters parameters = new SearchParameters(Integer.MIN_VALUE, Integer.MAX_VALUE, 10, 0, List.of());
+
         ExecutorService executorService = Executors.newFixedThreadPool(100);
         List<Callable<Void>> tasks = new ArrayList<>();
         for (int i = 0; i < 100; i++) {
@@ -37,7 +39,7 @@ public class BohemianAppApplicationTests {
                 itemService.getItem(id);
                 item.setUserValue(987654321);
                 itemService.updateItem(id, item);
-                itemService.findItems(PageRequest.of(0, 10), new ArrayList<>());
+                itemService.findItems(parameters);
                 itemService.deleteItem(id);
                 return null;
             });

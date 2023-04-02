@@ -1,8 +1,8 @@
 package com.bohemian.app.service;
 
 import com.bohemian.app.entity.ItemDAO;
+import com.bohemian.app.entity.SearchParameters;
 import com.bohemian.app.exceptions.NotFoundException;
-import org.springframework.data.domain.Pageable;
 
 import java.time.Instant;
 import java.util.Date;
@@ -52,7 +52,7 @@ public class DummyItemService implements IItemService {
     }
 
     @Override
-    public List<ItemDAO> findItems(Pageable pageable, List<String> tags) {
+    public List<ItemDAO> findItems(SearchParameters parameters) {
         return null;
     }
 
