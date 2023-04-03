@@ -1,4 +1,4 @@
-package com.bohemian.app.utils;
+package com.item.app.utils;
 
 import lombok.Getter;
 import lombok.Setter;

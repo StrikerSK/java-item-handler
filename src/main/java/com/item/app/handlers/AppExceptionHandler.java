@@ -1,6 +1,6 @@
-package com.bohemian.app.handlers;
+package com.item.app.handlers;
 
-import com.bohemian.app.exceptions.NotFoundException;
+import com.item.app.exceptions.NotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.web.bind.annotation.ExceptionHandler;

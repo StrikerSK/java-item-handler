@@ -1,4 +1,4 @@
-package com.bohemian.app;
+package com.item.app;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -8,10 +8,10 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 @SpringBootApplication
 @EnableJpaRepositories
 @EnableScheduling
-public class BohemianAppApplication {
+public class ItemsAppApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(BohemianAppApplication.class, args);
+        SpringApplication.run(ItemsAppApplication.class, args);
     }
 
 }

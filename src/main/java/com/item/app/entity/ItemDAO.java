@@ -1,4 +1,4 @@
-package com.bohemian.app.entity;
+package com.item.app.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;

@@ -1,4 +1,4 @@
-# Bohemians application
+# Items application
 
 Simple small application utilizing basic components like Java, Spring Boot, Spring JPA, Liquibase, SQL, H2, Postgres and JUnit. 
 Application can support SQL database like H2 and Postgres to store data created within application.
@@ -19,8 +19,8 @@ mvn clean install
 ```
 2. Run build artifact located usually in `target` folder:
 ```bash
-java -jar target/bohemian-app-0.0.1-SNAPSHOT.jar
+java -jar target/item-app-0.0.1-SNAPSHOT.jar
 ```
 
 ## Template request
-Requests valid for the application are done in Postman collection template file: `src/test/resources/BohemiansApp.postman_collection.json`
+Requests valid for the application are done in Postman collection template file: `src/test/resources/itemsApp.postman_collection.json`

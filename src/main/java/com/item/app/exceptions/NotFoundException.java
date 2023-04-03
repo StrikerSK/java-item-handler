@@ -1,4 +1,4 @@
-package com.bohemian.app.exceptions;
+package com.item.app.exceptions;
 
 public class NotFoundException extends RuntimeException {
 

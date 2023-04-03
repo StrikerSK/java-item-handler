@@ -1,8 +1,8 @@
-package com.bohemian.app;
+package com.item.app;
 
-import com.bohemian.app.entity.ItemDAO;
-import com.bohemian.app.utils.SearchParameters;
-import com.bohemian.app.service.IItemService;
+import com.item.app.entity.ItemDAO;
+import com.item.app.utils.SearchParameters;
+import com.item.app.service.IItemService;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -18,7 +18,7 @@ import java.util.concurrent.*;
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
-public class BohemianAppApplicationTests {
+public class ItemsAppApplicationTests {
 
     @Autowired
     protected IItemService itemService;

@@ -1,7 +1,7 @@
 {
 	"info": {
 		"_postman_id": "b4e5e1e9-8919-4118-8927-163d0facdc16",
-		"name": "Bohemians app",
+		"name": "Items app",
 		"description": "# Introduction\nApplication retrieve data about item stored in database.\n\n# Overview\nSimple data retrieval using REST API\n\n# Authentication\nThere is no authentication incorporated\n\n# Error Codes\nWe commonly can expect status codes 400 and 404",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "4310016"

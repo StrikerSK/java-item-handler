@@ -1,9 +1,9 @@
-package com.bohemian.app.service;
+package com.item.app.service;
 
-import com.bohemian.app.utils.SearchParameters;
-import com.bohemian.app.exceptions.NotFoundException;
-import com.bohemian.app.entity.ItemDAO;
-import com.bohemian.app.repository.ItemRepository;
+import com.item.app.utils.SearchParameters;
+import com.item.app.exceptions.NotFoundException;
+import com.item.app.entity.ItemDAO;
+import com.item.app.repository.ItemRepository;
 import jakarta.persistence.LockModeType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.Lock;
@@ -61,7 +61,7 @@ public class DefaultItemService implements IItemService {
         repository.deleteById(id);
     }
 
-    @Scheduled(fixedDelayString = "${bohemian.deletion.delay:60000}")
+    @Scheduled(fixedDelayString = "${item.deletion.delay:60000}")
     @Transactional
     public void deleteExpiredItems() {
         repository.deleteExpiredItems();

@@ -1,9 +1,9 @@
-package com.bohemian.app.service;
+package com.item.app.service;
 
-import com.bohemian.app.BohemianAppApplicationTests;
-import com.bohemian.app.entity.ItemDAO;
-import com.bohemian.app.utils.SearchParameters;
-import com.bohemian.app.exceptions.NotFoundException;
+import com.item.app.ItemsAppApplicationTests;
+import com.item.app.entity.ItemDAO;
+import com.item.app.utils.SearchParameters;
+import com.item.app.exceptions.NotFoundException;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -11,7 +11,7 @@ import org.junit.Test;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DefaultItemServiceTest extends BohemianAppApplicationTests {
+public class DefaultItemServiceTest extends ItemsAppApplicationTests {
 
     List<Long> itemsIDs = new ArrayList<>();
 

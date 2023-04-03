@@ -8,11 +8,11 @@
         <version>3.0.5</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <groupId>com.bohemian</groupId>
-    <artifactId>bohemian-app</artifactId>
+    <groupId>com.item</groupId>
+    <artifactId>item-app</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>bohemian-app</name>
-    <description>bohemian-app</description>
+    <name>item-app</name>
+    <description>item-app</description>
 
     <properties>
         <java.version>17</java.version>

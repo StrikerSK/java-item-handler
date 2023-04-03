@@ -1,6 +1,6 @@
-package com.bohemian.app.repository;
+package com.item.app.repository;
 
-import com.bohemian.app.entity.ItemDAO;
+import com.item.app.entity.ItemDAO;
 
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;

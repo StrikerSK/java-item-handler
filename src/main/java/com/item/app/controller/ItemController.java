@@ -1,8 +1,8 @@
-package com.bohemian.app.controller;
+package com.item.app.controller;
 
-import com.bohemian.app.entity.ItemDAO;
-import com.bohemian.app.utils.SearchParameters;
-import com.bohemian.app.service.IItemService;
+import com.item.app.entity.ItemDAO;
+import com.item.app.utils.SearchParameters;
+import com.item.app.service.IItemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
