@@ -1,0 +1,198 @@
+{
+	"info": {
+		"_postman_id": "b4e5e1e9-8919-4118-8927-163d0facdc16",
+		"name": "Bohemians app",
+		"description": "# Introduction\nApplication retrieve data about item stored in database.\n\n# Overview\nSimple data retrieval using REST API\n\n# Authentication\nThere is no authentication incorporated\n\n# Error Codes\nWe commonly can expect status codes 400 and 404",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "4310016"
+	},
+	"item": [
+		{
+			"name": "Create Item",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const { id } = pm.response.json()",
+							"pm.collectionVariables.set(\"OUTPUT_ID\", id)"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"value\": 5,\n\t\"tags\": [\n\t\t\"second\",\n\t\t\"code\"\n\t]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{HOST_URL}}/api/item",
+					"host": [
+						"{{HOST_URL}}"
+					],
+					"path": [
+						"api",
+						"item"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Read Item",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{HOST_URL}}/api/item/{{OUTPUT_ID}}",
+					"host": [
+						"{{HOST_URL}}"
+					],
+					"path": [
+						"api",
+						"item",
+						"{{OUTPUT_ID}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Item",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"value\": 99999\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{HOST_URL}}/api/item/{{OUTPUT_ID}}",
+					"host": [
+						"{{HOST_URL}}"
+					],
+					"path": [
+						"api",
+						"item",
+						"{{OUTPUT_ID}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "List Items",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{HOST_URL}}/api/item",
+					"host": [
+						"{{HOST_URL}}"
+					],
+					"path": [
+						"api",
+						"item"
+					],
+					"query": [
+						{
+							"key": "tags",
+							"value": "first",
+							"disabled": true
+						},
+						{
+							"key": "tags",
+							"value": "second",
+							"disabled": true
+						},
+						{
+							"key": "limit",
+							"value": "1",
+							"disabled": true
+						},
+						{
+							"key": "page",
+							"value": "0",
+							"disabled": true
+						},
+						{
+							"key": "lowerValue",
+							"value": "1",
+							"disabled": true
+						},
+						{
+							"key": "upperValue",
+							"value": "10",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Item",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{HOST_URL}}/api/item/{{OUTPUT_ID}}",
+					"host": [
+						"{{HOST_URL}}"
+					],
+					"path": [
+						"api",
+						"item",
+						"{{OUTPUT_ID}}"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "OUTPUT_ID",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "HOST_URL",
+			"value": "localhost:8080",
+			"type": "string"
+		}
+	]
+}

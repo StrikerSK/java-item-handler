@@ -31,7 +31,7 @@ public class SearchParameters {
     }
 
     public void setUpperBound(Integer upperBound) {
-        this.upperBound = Objects.requireNonNullElse(upperBound, Integer.MIN_VALUE);
+        this.upperBound = Objects.requireNonNullElse(upperBound, Integer.MAX_VALUE);
     }
 
     public void setTags(List<String> tags) {

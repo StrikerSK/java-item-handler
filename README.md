@@ -21,3 +21,6 @@ mvn clean install
 ```bash
 java -jar target/bohemian-app-0.0.1-SNAPSHOT.jar
 ```
+
+## Template request
+Requests valid for the application are done in Postman collection template file: `src/test/resources/BohemiansApp.postman_collection.json`

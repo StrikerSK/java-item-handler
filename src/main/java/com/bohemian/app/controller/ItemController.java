@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/item")
@@ -33,8 +34,8 @@ public class ItemController {
     }
 
     @PostMapping
-    public Long createItem(@RequestBody ItemDAO item) {
-        return service.createItem(item);
+    public Map<String, Object> createItem(@RequestBody ItemDAO item) {
+        return Map.of("id", service.createItem(item));
     }
 
     @PutMapping("/{id}")
@@ -43,7 +44,7 @@ public class ItemController {
     }
 
     @DeleteMapping("/{id}")
-    public void updateItem(@PathVariable Long id) {
+    public void deleteItem(@PathVariable Long id) {
         service.deleteItem(id);
     }
 
