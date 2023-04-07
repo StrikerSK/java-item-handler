@@ -124,7 +124,7 @@
 							"disabled": true
 						},
 						{
-							"key": "page",
+							"key": "offset",
 							"value": "0",
 							"disabled": true
 						},

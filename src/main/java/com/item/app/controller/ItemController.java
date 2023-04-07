@@ -1,6 +1,7 @@
 package com.item.app.controller;
 
 import com.item.app.entity.ItemDAO;
+import com.item.app.utils.ListingFactory;
 import com.item.app.utils.SearchParameters;
 import com.item.app.service.IItemService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +17,9 @@ public class ItemController {
     @Autowired
     private IItemService service;
 
+    @Autowired
+    private ListingFactory listingFactory;
+
     @GetMapping("/{id}")
     public ItemDAO getItem(@PathVariable Long id) {
         return service.getItem(id);
@@ -23,13 +27,13 @@ public class ItemController {
 
     @GetMapping("")
     public List<ItemDAO> findItems(
-            @RequestParam(defaultValue = "0") Integer page,
-            @RequestParam(defaultValue = "5") Integer limit,
+            @RequestParam(required = false) Integer offset,
+            @RequestParam(required = false) Integer limit,
             @RequestParam(required = false) Integer lowerValue,
             @RequestParam(required = false) Integer upperValue,
             @RequestParam(required = false) List<String> tags
     ) {
-        SearchParameters searchParameters = new SearchParameters(lowerValue, upperValue, limit, page, tags);
+        SearchParameters searchParameters = listingFactory.generateFilter(lowerValue, upperValue, limit, offset, tags);
         return service.findItems(searchParameters);
     }
 

@@ -19,11 +19,11 @@ public class SearchParameters {
     private List<String> tags;
 
     public SearchParameters(Integer lowerBound, Integer upperBound, Integer limit, Integer offset, List<String> tags) {
-        setLowerBound(lowerBound);
-        setUpperBound(upperBound);
-        setOffset(offset);
-        setLimit(limit);
-        setTags(tags);
+        this.setLowerBound(lowerBound);
+        this.setUpperBound(upperBound);
+        this.setOffset(offset);
+        this.setLimit(limit);
+        this.setTags(tags);
     }
 
     public void setLowerBound(Integer lowerBound) {

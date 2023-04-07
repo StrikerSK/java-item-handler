@@ -22,5 +22,10 @@ mvn clean install
 java -jar target/item-app-0.0.1-SNAPSHOT.jar
 ```
 
+### Configurations
+1. Set limit size: `--item.listing.defaults.limit`, default 10
+2. Set offset size: `--item.listing.defaults.offset`, default 0
+3. Set scheduling timer: `--item.deletion.delay`, default 60000
+
 ## Template request
 Requests valid for the application are done in Postman collection template file: `src/test/resources/itemsApp.postman_collection.json`
