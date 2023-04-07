@@ -1,17 +1,19 @@
 package com.item.app.service;
 
-import com.item.app.ItemsAppApplicationTests;
+import com.item.app.AbstractSpringTesting;
 import com.item.app.entity.ItemDAO;
 import com.item.app.utils.SearchParameters;
 import com.item.app.exceptions.NotFoundException;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import org.springframework.test.annotation.DirtiesContext;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class DefaultItemServiceTest extends ItemsAppApplicationTests {
+@DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
+public class DefaultItemServiceTest extends AbstractSpringTesting {
 
     List<Long> itemsIDs = new ArrayList<>();
 

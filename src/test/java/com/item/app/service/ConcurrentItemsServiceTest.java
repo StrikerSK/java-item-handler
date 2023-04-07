@@ -1,27 +1,18 @@
-package com.item.app;
+package com.item.app.service;
 
+import com.item.app.AbstractSpringTesting;
 import com.item.app.entity.ItemDAO;
 import com.item.app.utils.SearchParameters;
-import com.item.app.service.IItemService;
 import org.junit.Assert;
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.DirtiesContext;
-import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.*;
 
-@RunWith(SpringRunner.class)
-@SpringBootTest
 @DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
-public class ItemsAppApplicationTests {
-
-    @Autowired
-    protected IItemService itemService;
+public class ConcurrentItemsServiceTest extends AbstractSpringTesting {
 
     @Test
     public void testConcurrentAccess() throws InterruptedException, ExecutionException {

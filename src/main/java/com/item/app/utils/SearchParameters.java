@@ -26,14 +26,6 @@ public class SearchParameters {
         this.setTags(tags);
     }
 
-    public void setLowerBound(Integer lowerBound) {
-        this.lowerBound = Objects.requireNonNullElse(lowerBound, Integer.MIN_VALUE);
-    }
-
-    public void setUpperBound(Integer upperBound) {
-        this.upperBound = Objects.requireNonNullElse(upperBound, Integer.MAX_VALUE);
-    }
-
     public void setTags(List<String> tags) {
         this.tags = Objects.requireNonNullElseGet(tags, ArrayList::new);
     }
