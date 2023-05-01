@@ -44,20 +44,23 @@ public class ConcurrentItemsServiceTest extends AbstractSpringTesting {
 
     @Test
     public void testConcurrentUpdate() throws Exception {
-        final int numThreads = 100;
-        final int numIterations = 10;
+        final int threadsCount = 100;
+        final int iterationsCount = 10;
+
         ItemDAO itemDAO = new ItemDAO();
         itemDAO.setUserValue(123);
+        itemDAO.setTags(List.of("test", "tag"));
         final Long itemId = itemService.createItem(itemDAO);
 
-        ExecutorService executor = Executors.newFixedThreadPool(numThreads);
+        ExecutorService executor = Executors.newFixedThreadPool(threadsCount);
         List<Future> futures = new ArrayList<>();
 
-        for (int i = 0; i < numThreads; i++) {
+        for (int i = 0; i < threadsCount; i++) {
             Callable<Void> task = () -> {
-                for (int j = 0; j < numIterations; j++) {
+                for (int j = 0; j < iterationsCount; j++) {
                     ItemDAO item = itemService.getItem(itemId);
                     item.setUserValue(456);
+                    item.setTags(List.of("updated","test","tag"));
                     itemService.updateItem(itemId, item);
                 }
                 return null;
