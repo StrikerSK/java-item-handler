@@ -8,6 +8,7 @@ import com.item.app.repository.ItemRepository;
 import jakarta.persistence.LockModeType;
 import jakarta.persistence.OptimisticLockException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.OptimisticLockingFailureException;
 import org.springframework.data.jpa.repository.Lock;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
@@ -38,7 +39,7 @@ public class DefaultItemService implements IItemService {
 
         try {
             repository.save(item);
-        } catch (OptimisticLockException ex) {
+        } catch (OptimisticLockException | OptimisticLockingFailureException ex) {
             throw new ConflictException(String.format("Cannot update item [%s], because it was updated by other user!", itemID));
         }
     }

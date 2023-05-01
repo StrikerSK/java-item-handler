@@ -1,5 +1,6 @@
 package com.item.app.handlers;
 
+import com.item.app.exceptions.ConflictException;
 import com.item.app.exceptions.NotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.converter.HttpMessageNotReadableException;
@@ -15,6 +16,12 @@ public class AppExceptionHandler {
     @ExceptionHandler(NotFoundException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
     public Map<String, String> handleException(NotFoundException ex) {
+        return Map.of("message", ex.getMessage());
+    }
+
+    @ExceptionHandler(ConflictException.class)
+    @ResponseStatus(HttpStatus.CONFLICT)
+    public Map<String, String> handleException(ConflictException ex) {
         return Map.of("message", ex.getMessage());
     }
 
