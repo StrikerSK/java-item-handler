@@ -50,11 +50,13 @@ public class ItemDAO {
     public ItemDAO () {
         this.createAt = new Date();
         this.modifiedAt = new Date();
+        this.version = 1L;
     }
 
     @PreUpdate
     public void setModifiedAt() {
         this.modifiedAt = new Date();
+        this.version++;
     }
 
 

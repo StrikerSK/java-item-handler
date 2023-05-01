@@ -112,6 +112,7 @@ public class DefaultItemServiceTest extends AbstractSpringTesting {
         Assert.assertEquals(2, persistedItem.getTags().size());
         Assert.assertEquals(id, persistedItem.getId());
         Assert.assertNotEquals(persistedItem.getCreateAt(), persistedItem.getModifiedAt());
+        Assert.assertEquals(2, persistedItem.getVersion().longValue());
     }
 
     @Test
