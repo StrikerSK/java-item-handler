@@ -1,11 +1,14 @@
 package com.item.app.service;
 
+import com.item.app.exceptions.ConflictException;
 import com.item.app.utils.SearchParameters;
 import com.item.app.exceptions.NotFoundException;
 import com.item.app.entity.ItemDAO;
 import com.item.app.repository.ItemRepository;
 import jakarta.persistence.LockModeType;
+import jakarta.persistence.OptimisticLockException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.OptimisticLockingFailureException;
 import org.springframework.data.jpa.repository.Lock;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
@@ -33,7 +36,12 @@ public class DefaultItemService implements IItemService {
         List<String> newChapters = new ArrayList<>(updatedItem.getTags());
         item.setUserValue(updatedItem.getUserValue());
         item.setTags(newChapters);
-        repository.save(item);
+
+        try {
+            repository.save(item);
+        } catch (OptimisticLockException | OptimisticLockingFailureException ex) {
+            throw new ConflictException(String.format("Cannot update item [%s], because it was updated by other user!", itemID));
+        }
     }
 
     @Override
